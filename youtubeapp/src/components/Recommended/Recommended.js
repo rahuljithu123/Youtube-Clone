@@ -15,7 +15,7 @@ function RecommendedVideos() {
   useEffect(() => {
     axios
       .get(
-        `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=12&regionCode=IN&key=AIzaSyB2QctaqIQq3ZPO-w1hvZJ0dOGGXUFgEl4`
+        `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=12&regionCode=IN&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
       )
       .then((response) => {
         console.log(response.data.items);
@@ -34,7 +34,7 @@ function RecommendedVideos() {
       const snippet = video.snippet;
       const channelId = snippet.channelId;
       const response = await axios.get(
-        `https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${channelId}&key=AIzaSyB2QctaqIQq3ZPO-w1hvZJ0dOGGXUFgEl4`
+        `https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${channelId}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
       );
       const channelImage = response.data.items[0].snippet.thumbnails.medium.url;
 
